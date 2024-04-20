@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Publishing Dashboard</title>
+    <!-- Add Tailwind CSS styles -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Left Sidebar -->
+        <div class="w-1/4 bg-gray-900 h-screen text-white p-4">
+            <!-- Sidebar Content -->
+            <ul>
+                <li class="mb-4"><a href="#" onclick="loadTemplate('dashboard')" class="text-blue-300 hover:text-blue-500">Dashboard</a></li>
+                <li class="mb-4"><a href="#" onclick="loadTemplate('courses')" class="text-blue-300 hover:text-blue-500">Create Course</a></li>
+                <li class="mb-4"><a href="#" onclick="loadTemplate('instructors')" class="text-blue-300 hover:text-blue-500">Instructors</a></li>
+                <!-- Add more links as needed -->
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="w-3/4 p-8" id="content">
+            <!-- Content templates will be loaded here -->
+        </div>
+    </div>
+
+    <!-- JavaScript to handle dynamic content loading -->
+    <script>
+        // Function to load content templates dynamically
+        function loadTemplate(template) {
+            const content = document.getElementById('content');
+            
+            // You can use AJAX or fetch to load content from the server based on the 'template' parameter.
+            // For simplicity, I'm just showing different static content here.
+            
+            if (template === 'dashboard') {
+                content.innerHTML = '<h1 class="text-2xl font-semibold">Course Publishing Dashboard</h1>';
+            } else if (template === 'courses') {
+                content.innerHTML = '<h2 class="text-xl font-semibold">Manage Courses</h2><p>List of courses and publishing options go here.</p>';
+            } else if (template === 'instructors') {
+                content.innerHTML = '<h2 class="text-xl font-semibold">Instructor Management</h2><p>List of instructors and management options go here.</p>';
+            }
+        }
+
+        // Initial load (e.g., when the page first loads)
+        loadTemplate('dashboard');
+    </script>
+</body>
+</html>

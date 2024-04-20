@@ -1,0 +1,16 @@
+{% extends "course_wizard.html" %}
+
+{% block content %}
+<h2>Wizard Completed</h2>
+<p>Thank you for completing the wizard. Here is a summary of the data you submitted:</p>
+<ul>
+    <li>Title: {{ form_data.0.title }}</li>
+    <li>Description: {{ form_data.0.description }}</li>
+    <li>Start Date: {{ form_data.1.start_date }}</li>
+    <li>Duration (weeks): {{ form_data.1.duration_weeks }}</li>
+    <li>About: {{ form_data.1.about }}</li>
+    <li>Skills: {% for skill in form_data.2.skills %}{{ skill }}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+    <li>Instructor: {{ form_data.3.instructor }}</li>
+</ul>
+<p>You can customize this template to display the data as needed.</p>
+{% endblock %}

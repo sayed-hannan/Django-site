@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<body class="font-sans">
+    <div class="flex">
+        <!-- Left Sidebar for Table of Contents -->
+        <aside class="w-1/4 p-4 bg-gray-100">
+            <h2 class="text-xl font-semibold mb-4">Table of Contents</h2>
+            <ul id="sidebar" class="space-y-2">
+                <!-- Generate table of contents dynamically -->
+                <!-- Example: <li><a href="#section-1">Section 1</a></li> -->
+            </ul>
+        </aside>
+
+        <!-- Main Content Area (Center) -->
+        <main class="w-1/2 p-4">
+            <article>
+                <!-- Article content goes here -->
+                <h1 class="text-2xl font-bold mb-4">{{ article.title }}</h1>
+                <div>
+                    {{ article.image }}
+                </div>
+                <div id="contentContainer">
+                    <!-- Article content will be loaded here -->
+                    {{ article.content|safe }}
+                </div>
+            </article>
+            
+        </main>
+
+        <!-- Right Sidebar for Ads -->
+        <aside class="w-1/4 p-4 bg-gray-100">
+            <!-- Ad content goes here -->
+        </aside>
+    </div>
+
+    <!-- Include Tailwind CSS and your JavaScript for smooth scrolling here -->
+    <script src="{% static 'js/ram.js' %}"></script>
+</body>
+{% endblock %}

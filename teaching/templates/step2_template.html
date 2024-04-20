@@ -1,0 +1,11 @@
+{% extends "course_wizard.html" %}
+
+{% block content %}
+<h2>Step 2: Date, Duration, and About</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ wizard.management_form }}
+    {{ wizard.form }}
+    <button type="submit">Next</button>
+</form>
+{% endblock %}

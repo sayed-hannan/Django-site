@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Create/Edit Course</h1>
+<div class="wizard-container">
+    <form method="post">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+        {{ wizard.form.management_form }}
+        
+        {% if wizard.steps.current == 'step1' %}
+            {% include "step1_template.html" %}
+        {% elif wizard.steps.current == 'step2' %}
+            {% include "step2_template.html" %}
+        {% elif wizard.steps.current == 'step3' %}
+            {% include "step3_template.html" %}
+        {% elif wizard.steps.current == 'step4' %}
+            {% include "step4_template.html" %}
+        {% endif %}
+        
+        <div class="wizard-buttons">
+            {% if wizard.steps.prev %}
+                <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.prev }}">Previous</button>
+            {% endif %}
+            
+            {% if wizard.steps.next %}
+                <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.next }}">Next</button>
+            {% endif %}
+            
+            {% if wizard.steps.current == 'step4' %}
+                <button type="submit" name="complete" value="1">Complete</button>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

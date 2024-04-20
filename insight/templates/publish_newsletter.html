@@ -1,0 +1,40 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publish Newsletter</title>
+    <!-- Include Tailwind CSS from a CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-100">
+
+    <div class="container max-w-screen-xl mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold mb-4">Publish Article</h1>
+        <!-- Article Publishing Form -->
+        <form method="post" class=" mx-auto bg-white p-6 rounded-lg shadow-lg">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="title" class="block text-gray-700 font-bold mb-2">Title:</label>
+                <input type="text" name="title" id="title" class="px-4 py-2 border rounded-md focus:ring focus:ring-indigo-300 " autocomplete="off">
+            </div>
+            <div class="mb-4">
+                <label for="editor" class="block text-gray-700 font-bold mb-2">Content:</label>
+                <!-- CKEditor will replace this textarea -->
+                <textarea id="editor" name="content" class="border rounded-md focus:ring focus:ring-indigo-300 w-full h-40"></textarea>
+            </div>
+            <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300">Publish</button>
+        </form>
+        <!-- End of Article Publishing Form -->
+    </div>
+
+    <!-- Include CKEditor from a CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/super-build/ckeditor.js"></script>
+
+    <!-- Initialize CKEditor for your content field -->
+    <script src="{% static 'js/publish_article.js'%}"></script>
+</body>
+</html>

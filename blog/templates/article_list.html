@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+
+{% block content%}
+
+
+<section class="bg-white">
+    <div class="container mx-auto p-8 p-32">
+        <h1 class="text-center text-4xl font-bold mb-4">Blog</h1>
+    </div>
+</section>
+
+
+<header class="text-gray-600 bg-white body-font">
+    <div class="container">
+        <div class=" max-w-screen-xl mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="blue" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-blue-500" viewBox="0 0 24 24">
+                    <path d="M12 20V9h4v11h5V12h3L12 2 2 12h3v8h5z"></path>
+                </svg>
+
+
+            </a>
+            <nav
+                class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+                <a class="mr-5 hover:text-gray-900">First Link</a>
+                <a class="mr-5 hover:text-gray-900">Second Link</a>
+                <a class="mr-5 hover:text-gray-900">Third Link</a>
+                <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+
+<!-- article_list.html -->
+<!-- article_list.html -->
+<section class="p-6">
+    <div class="container">
+        <div class="max-w-screen-xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {% for article in articles %}
+                <article class="bg-white overflow-hidden shadow rounded-lg">
+                    <!-- Add a link to the article detail view -->
+             
+                        <img src="{{ article.image.url }}" alt="{{ article.title }} Image"
+                            class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <!-- Tags -->
+                            {% for tag in article.articletag_set.all %}
+                            <div class="bg-gray-200 text-gray-700 px-2 py-2 text-xs rounded my-2 inline-block">{{
+                                tag.tag.name }}</div>
+                            {% endfor %}
+                            <!-- Headline -->
+                            <h3 class="text-lg font-medium text-gray-900">{{ article.title }}</h3>
+                            <!-- Truncated Content -->
+                            <p class="mt-2 text-gray-700">{{ article.content|truncatewords:30 }}</p>
+
+                            <!-- Date -->
+                            <p class="mt-2 text-sm text-gray-500">{{ article.publication_date }}</p>
+                            <p>Reading Time: {{ article.reading_time }} minutes</p>
+                        </div>
+    
+                        <a href="{% url 'article_layout' article.id %}">Read More</a>
+
+
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- Pagination Links -->
+<!-- blog/article_list.html -->
+<div class="pagination">
+    <span class="step-links flex justify-center">
+        {% if articles.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ articles.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current-page">Page {{ articles.number }} of {{ articles.paginator.num_pages }}.</span>
+        {% if articles.has_next %}
+        <a href="?page={{ articles.next_page_number }}">next</a>
+        <a href="?page={{ articles.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+<!-- "Older Posts" Button -->
+{% if articles.has_previous %}
+<a href="?page={{ articles.previous_page_number }}" class="older-posts-button">Older Pages</a>
+{% endif %}
+
+
+{% endblock %}

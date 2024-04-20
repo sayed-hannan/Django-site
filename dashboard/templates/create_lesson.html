@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-semibold mb-4">Create a New Lesson</h2>
+    <form method="post" class="max-w-screen-xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        {% csrf_token %}
+
+        <!-- Lesson Title Field -->
+        <div class="w-1/2 mb-4 flex flex-col">
+            <label for="{{ lesson_form.title.id_for_label }}" class="text-gray-700 text-sm font-bold mb-2">Lesson Title:</label>
+            {{ lesson_form.title }}
+        </div>
+
+        <!-- Module Field (Foreign Key) -->
+        <div class="w-1/2 mb-4 flex flex-col">
+            <label for="{{ lesson_form.module.id_for_label }}" class="text-gray-700 text-sm font-bold mb-2">Module:</label>
+            {{ lesson_form.module }}
+        </div>
+
+        <!-- Lesson Type Field -->
+        <div class="w-1/2 mb-4 flex flex-col">
+            <label for="{{ lesson_form.lesson_type.id_for_label }}" class="text-gray-700 text-sm font-bold mb-2">Lesson Type:</label>
+            {{ lesson_form.lesson_type }}
+        </div>
+
+        <!-- Content Field -->
+        <div class="mb-4 flex flex-col">
+            <label for="{{ lesson_form.content.id_for_label }}" class="text-gray-700 text-sm font-bold mb-2">Content:</label>
+            {{ lesson_form.content }}
+        </div>
+
+        <!-- Add more fields as needed -->
+
+        <div class="mt-4">
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                Create Lesson
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

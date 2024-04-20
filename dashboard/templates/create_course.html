@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Course</title>
+    <!-- Add your CSS styles and scripts here -->
+</head>
+
+<body>
+    <div id="step-1">
+        <!-- Step 1: Course Information Form -->
+        <h1>Step 1: Course Information</h1>
+
+        <form method="post" action="{% url 'dashboard:create_course' %}">
+            {% csrf_token %}
+            {{ course_form.as_p }}
+
+            <!-- Module Formset -->
+            {% for form in module_formset %}
+            {{ form.as_p }}
+            {% endfor %}
+
+            <button type="submit" name="create-course">Create Course</button>
+        </form>
+
+
+    </div>
+
+    <div id="step-2" style="display: none;">
+        <!-- Step 2: Module Creation Form -->
+        <h1>Step 2: Module Creation</h1>
+        <!-- Module Creation Form -->
+        <form method="post" action="{% url 'dashboard:create_course' %}">
+            {% csrf_token %}
+            {{ module_form.as_p }}
+            <input type="hidden" name="course_id" value="{{ course_form.instance.pk }}">
+            <button type="submit" name="create-course" id="create-course-btn">Create Course</button>
+
+        </form>
+
+    </div>
+
+    <div id="success-message" style="display: none;">
+        <h1>Course Creation Successful!</h1>
+    </div>
+
+    <div id="step-3" style="display: none;">
+        <!-- Step 3: Content Creation Form -->
+        <h1>Step 3: Content Creation</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ content_form.as_p }}
+            <button type="submit">Create Content</button>
+        </form>
+
+    </div>
+
+    <div id="success-message" style="display: none;">
+        <!-- Success message shown after the final step -->
+        <h1>Course Creation Successful!</h1>
+    </div>
+
+
+
+
+    <script>
+        function nextStep(currentStep, nextStep) {
+            // Hide the current step
+            document.getElementById('step-' + currentStep).style.display = 'none';
+
+            if (nextStep === 'submit') {
+                // You can submit the form data here or perform additional actions
+                // For simplicity, we're just displaying a success message
+                document.getElementById('success-message').style.display = 'block';
+            } else {
+                // Show the next step
+                document.getElementById('step-' + nextStep).style.display = 'block';
+            }
+        }
+
+        // Add an onclick event handler to the "Create Course" button
+        document.querySelector('#create-course-btn').addEventListener('click', function (e) {
+            e.preventDefault();  // Prevent the default form submission
+
+            // Assuming the course form is valid (you can add validation logic)
+            nextStep(1, 2); // Move to the next step when "Create Course" is clicked
+        });
+    </script>
+
+
+</body>
+
+</html>

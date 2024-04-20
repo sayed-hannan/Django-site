@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="max-w-screen-xl mx-auto p-4 flex">
+    <!-- Left Sidebar (Date and Social Share) -->
+    <div class="w-1/4 pr-4">
+        <!-- Date with Calendar Icon -->
+        <div class="py-4">
+            <div class="text-right flex items-center">
+                <div class="text-right flex-1">
+                    <span class="text-gray-400">Published</span>
+                </div>
+            </div>
+            <div class="text-right bg-gray-200 text-gray-700 px-2 py-2 text-xs rounded my-2">
+                {{ newsletter.publication_date|date:"M d, Y" }}
+            </div>
+        </div>
+
+        <!-- Reading Time with Clock Icon -->
+        <div class="text-right py-4">
+            <div class="text-right flex items-center">
+                <div class="text-right flex-1">
+                    <span class="text-gray-400">Reading Time</span>
+                </div>
+            </div>
+            <!-- Replace this with the actual reading time if available -->
+            <h2>11 min read</h2>
+        </div>
+
+        <!-- Share with Share Icons -->
+        <div class="text-right py-4">
+            <div class="text-right flex items-center">
+                <div class="text-right flex-1">
+                    <span class="text-gray-400">Share</span>
+                </div>
+            </div>
+            <!-- Add social share links here if needed -->
+            <div class="flex justify-end">
+                <a href="#" class="text-blue-500 hover:text-blue-700 ml-2">
+                    Facebook
+                </a>
+                <a href="#" class="text-blue-500 hover:text-blue-700 ml-2">
+                    Twitter
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Center Content Area (Newsletter Content) -->
+    <div class="w-1/2">
+        <!-- Newsletter Content -->
+        <article class="max-w-2xl bg-white rounded-lg shadow-md p-4">
+            <h1>{{ newsletter.title }}</h1>
+            <p class="text-gray-600">
+                {{ newsletter.content }}
+            </p>
+        </article>
+    </div>
+
+    <!-- Right Sidebar (Ads) -->
+    <div class="w-1/4 pl-4">
+        <!-- Ads Here -->
+        <div class="bg-gray-200 text-gray-700 px-2 py-2 text-xs rounded my-2">
+            <!-- Ad content or promotional content goes here -->
+            <span>Advertisements:</span>
+            <a href="#" class="text-green-500 hover:text-green-700 ml-2">Ad 1</a>
+            <a href="#" class="text-green-500 hover:text-green-700 ml-2">Ad 2</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

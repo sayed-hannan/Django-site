@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block content %}
+
+<section class="bg-blue-500 text-white py-8">
+    <div class="container mx-auto text-center">
+        <h1 class="text-4xl font-bold mb-2">Welcome to Our Course Catalog</h1>
+        <p class="text-lg">Browse our wide range of courses to enhance your skills.</p>
+    </div>
+</section>
+
+<!-- Filter Section -->
+<section class="py-6">
+    <div class="container">
+        <div class="max-w-screen-xl mx-auto">
+            <div class="flex justify-between items-center">
+                <div class="w-1/3">
+                    <label for="category" class="text-gray-700 font-semibold">Filter by Category:</label>
+                    <select id="category"
+                        class="block w-full mt-1 p-2 border rounded-md focus:ring focus:ring-blue-300">
+                        <option value="">All Categories</option>
+                        <option value="programming">Programming</option>
+                        <option value="design">Design</option>
+                        <option value="business">Business</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="w-1/3">
+                    <label for="level" class="text-gray-700 font-semibold">Filter by Level:</label>
+                    <select id="level" class="block w-full mt-1 p-2 border rounded-md focus:ring focus:ring-blue-300">
+                        <option value="">All Levels</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <!-- Add more filter options if necessary -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Courses Section -->
+<section class="py-8">
+    <div class="container">
+
+        <div class="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Dummy Course Card 1 -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <img src="https://via.placeholder.com/400x250" alt="Course 1"
+                    class="w-full h-40 object-cover rounded-md mb-4">
+                <h2 class="text-lg font-semibold">Introduction to Programming</h2>
+                <p class="text-gray-600 mb-2">Learn the basics of programming.</p>
+                <div class="flex items-center">
+                    <p class="text-blue-500 font-medium">Beginner</p>
+                    <span class="ml-2 text-gray-500">Duration: 4 weeks</span>
+                </div>
+            </div>
+
+            <!-- Dummy Course Card 2 -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <img src="https://via.placeholder.com/400x250" alt="Course 2"
+                    class="w-full h-40 object-cover rounded-md mb-4">
+                <h2 class="text-lg font-semibold">Graphic Design Fundamentals</h2>
+                <p class="text-gray-600 mb-2">Explore the world of graphic design.</p>
+                <div class="flex items-center">
+                    <p class="text-blue-500 font-medium">Intermediate</p>
+                    <span class="ml-2 text-gray-500">Duration: 6 weeks</span>
+                </div>
+            </div>
+
+            <!-- Dummy Course Card 3 -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <img src="https://via.placeholder.com/400x250" alt="Course 3"
+                    class="w-full h-40 object-cover rounded-md mb-4">
+                <h2 class="text-lg font-semibold">Digital Marketing Strategies</h2>
+                <p class="text-gray-600 mb-2">Master the art of digital marketing.</p>
+                <div class="flex items-center">
+                    <p class="text-blue-500 font-medium">Advanced</p>
+                    <span class="ml-2 text-gray-500">Duration: 8 weeks</span>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Add more course cards as needed -->
+
+        </div>
+    </div>
+</section>
+
+
+<!-- course-catalog js -->
+<script src="{% static 'js/filter-ajax.js' %}"></script>
+{% endblock %}
